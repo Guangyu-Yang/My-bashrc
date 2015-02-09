@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Skip this config if we aren't in bash
+[[ -n "${BASH_VERSION}" ]] || return
+
 #-----------------------------------
 # Source global definitions (if any)
 #-----------------------------------
