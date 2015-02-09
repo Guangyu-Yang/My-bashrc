@@ -151,15 +151,15 @@ export smoothgreen="\[\033[0;38;5;42m\]"
 case "$TERM" in
 xterm)
     PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
-    $bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
+$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
     ;;
 xterm-256color)
     PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
-    $bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
+$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
     ;;    
     *)
     PS1="┌─(\u@\h \$(date \"+%a, %d %b %y\"))─\${fill}(\$newPWD\
-    )─┐\n└─(\$(date \"+%H:%M\") \$)─> "
+)─┐\n└─(\$(date \"+%H:%M\") \$)─> "
     ;;
 esac
 
