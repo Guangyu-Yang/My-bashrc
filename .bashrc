@@ -1,11 +1,30 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+#-----------------------------------
+# Source global definitions (if any)
+#-----------------------------------
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc   # --> Read /etc/bashrc, if present.
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Enable options:
+
+##################
+# Some settings
+##################
+set -o notify
+set -o noclobber
+set -o ignoreeof
+set -o nounset
+#set -o xtrace          # useful for debuging
+
+##################
+# Enable options
+##################
 shopt -s cdspell
 shopt -s cdable_vars
 shopt -s checkhash
@@ -138,7 +157,7 @@ esac
  echo $greet
 ######################################################
 # WELCOME SCREEN
-#######################################################
+######################################################
 
 echo -ne "${LIGHTGREEN}" "today is, "; date
 echo -e "${WHITE}"; cal ;  
