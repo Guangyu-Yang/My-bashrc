@@ -64,13 +64,52 @@ fi
 
 PROMPT_COMMAND=pre_prompt
 
+################################
+# COLOURS!
+################################
+export BLACK="\[\e[0;30m\]"
+export DARK_GRAY="\[\e[1;30m\]"
+export RED="\[\e[0;31m\]"
+export LIGHT_RED="\[\e[1;31m\]"
+export GREEN="\[\e[0;32m\]"
+export LIGHT_GREEN="\[\e[1;32m\]"
+export BROWN="\[\e[0;33m\]"
+export YELLOW="\[\e[1;33m\]"
+export BLUE="\[\e[0;34m\]"
+export LIGHT_BLUE="\[\e[1;34m\]"
+export PURPLE="\[\e[0;35m\]"
+export LIGHT_PURPLE="\[\e[1;35m\]"
+export CYAN="\[\e[0;36m\]"
+export LIGHT_CYAN="\[\e[1;36m\]"
+export LIGHT_GRAY="\[\e[0;37m\]"
+export WHITE="\[\e[1;37m\]"
+export NO_COLOUR="\[\e[0m\]"
+
+export BLACK='\e[0;30m'
+export BLUE='\e[0;34m'
+export GREEN='\e[0;32m'
+export CYAN='\e[0;36m'
+export RED='\e[0;31m'
+export PURPLE='\e[0;35m'
+export BROWN='\e[0;33m'
+export LIGHTGRAY='\e[0;37m'
+export DARKGRAY='\e[1;30m'
+export LIGHTBLUE='\e[1;34m'
+export LIGHTGREEN='\e[1;32m'
+export LIGHTCYAN='\e[1;36m'
+export LIGHTRED='\e[1;31m'
+export LIGHTPURPLE='\e[1;35m'
+export YELLOW='\e[1;33m'
+export WHITE='\e[1;37m'
+export NC='\e[0m'              # No Color
+
 export black="\[\033[0;38;5;0m\]"
 export red="\[\033[0;38;5;1m\]"
 export orange="\[\033[0;38;5;130m\]"
 export green="\[\033[0;38;5;2m\]"
 export yellow="\[\033[0;38;5;3m\]"
 export blue="\[\033[0;38;5;4m\]"
-export bblue="\[\033[0;38;5;130m\]"
+export bblue="\[\033[0;38;5;12m\]"
 export magenta="\[\033[0;38;5;55m\]"
 export cyan="\[\033[0;38;5;6m\]"
 export white="\[\033[0;38;5;7m\]"
@@ -79,23 +118,6 @@ export smoothblue="\[\033[0;38;5;111m\]"
 export iceblue="\[\033[0;38;5;45m\]"
 export turqoise="\[\033[0;38;5;50m\]"
 export smoothgreen="\[\033[0;38;5;42m\]"
-
-
-
-case "$TERM" in
-xterm)
-    PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
-$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
-    ;;
-screen)
-    PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
-$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
-    ;;    
-    *)
-    PS1="┌─(\u@\h \$(date \"+%a, %d %b %y\"))─\${fill}(\$newPWD\
-)─┐\n└─(\$(date \"+%H:%M\") \$)─> "
-    ;;
-esac
 
 ##################################################
 # Color chart					 #
@@ -135,7 +157,20 @@ esac
 #bakwht='\e[47m'   # White
 #txtrst='\e[0m'    # Text Reset
 
-
+case "$TERM" in
+xterm)
+    PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
+$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
+    ;;
+screen)
+    PS1="$bblue┌─($orange\u@\h \$(date \"+%a, %d %b %y\")$bblue)─\${fill}($orange\$newPWD\
+$bblue)─┐\n$bblue└─($orange\$(date \"+%H:%M\") \$$bblue)─>$white "
+    ;;    
+    *)
+    PS1="┌─(\u@\h \$(date \"+%a, %d %b %y\"))─\${fill}(\$newPWD\
+)─┐\n└─(\$(date \"+%H:%M\") \$)─> "
+    ;;
+esac
 
 ##################################################
 # Bashrc greetings				 #
