@@ -130,3 +130,77 @@ findgrep () {           # find | grep
                                 2> /dev/null
         fi
 }
+
+function ff() { find . -name '*'$1'*' ; }                 # find a file
+function fe() { find . -name '*'$1'*' -exec $2 {} \; ; }  # find a file and run $2 on it 
+function fstr() # find a string in a set of files
+{
+    if [ "$#" -gt 2 ]; then
+        echo "Usage: fstr \"pattern\" [files] "
+        return;
+    fi
+    SMSO=$(tput smso)
+    RMSO=$(tput rmso)
+    find . -type f -name "${2:-*}" -print | xargs grep -sin "$1" | \
+sed "s/$1/$SMSO$1$RMSO/gI"
+}
+
+function cuttail() # cut last n lines in file, 10 by default
+{
+    nlines=${2:-10}
+    sed -n -e :a -e "1,${nlines}!{P;N;D;};N;ba" $1
+}
+
+authme() {
+  [[ -z "$1" ]] && printf "Usage: authme <ssh_host> [<pub_key>]\n" && return 10
+
+  local host="$1"
+  shift
+  if [[ -z "$1" ]] ; then
+    local key="${HOME}/.ssh/id_dsa.pub"
+  else
+    local key="$1"
+  fi
+  shift
+
+  [[ ! -f "$key" ]] && echo "SSH key: $key does not exist." && return 11
+
+  if echo "$host" | egrep -q ':' ; then
+    local ssh_cmd="$(echo $host | awk -F':' '{print \"ssh -p \" $2 \" \" $1}')"
+  else
+    local ssh_cmd="ssh $host"
+  fi
+
+  $ssh_cmd '(if [ ! -d "${HOME}/.ssh" ]; then \
+    mkdir -m 0700 -p ${HOME}/.ssh; fi; \
+    cat - >> .ssh/authorized_keys)' < $key
+}
+
+
+##
+# Returns the remote user's public SSH key on STDOUT. The host can optionally
+# contain the username (like `jdoe@ssh.example.com') and a non-standard port
+# number (like `ssh.example.com:666').
+#
+# @param [String] remote ssh host in for form of [<user>@]host[:<port>]
+# @param [String] remote public key, using id_dsa.pub by default
+mysshkey() {
+  [[ -z "$1" ]] && printf "Usage: mysshkey <ssh_host> [<pub_key>]\n" && return 10
+
+  local host="$1"
+  shift
+  if [[ -z "$1" ]] ; then
+    local key="id_dsa.pub"
+  else
+    local key="$1"
+  fi
+  shift
+
+  if echo "$host" | egrep -q ':' ; then
+    local ssh_cmd="$(echo $host | awk -F':' '{print \"ssh -p \" $2 \" \" $1}')"
+  else
+    local ssh_cmd="ssh $host"
+  fi
+
+  $ssh_cmd "(cat .ssh/$key)"
+}
