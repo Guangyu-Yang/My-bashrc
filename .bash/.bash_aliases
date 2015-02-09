@@ -1,6 +1,3 @@
-alias sshplm='ssh guangyy@user.palmetto.clemson.edu'
-alias sftpplm='sftp guangyy@user.palmetto.clemson.edu'
-
 # Directory navigation aliases
 alias ..='cd ..'
 alias ...='cd ../..'
