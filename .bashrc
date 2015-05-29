@@ -192,7 +192,7 @@ echo -ne "${LIGHTGREEN}" "today is, "; date
 echo -e "${WHITE}"; cal ;  
 echo -ne "${CYAN}";
 echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
-
+echo -ne "${WHITE}"; 
 
 ###### holiday greeting
  # from Jonathan's .bashrc file (by ~71KR117)
